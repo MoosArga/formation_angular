@@ -1,0 +1,24 @@
+@import "var";
+
+.l-content {
+  background-color: #162C44;
+}
+
+.l-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#logo {
+
+}
+
+#main-title {
+  font-family: $font-title;
+  font-size: $font-size-lg;
+}
+
+#menu {
+
+}

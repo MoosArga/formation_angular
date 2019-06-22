@@ -1,0 +1,35 @@
+
+@font-face {
+  font-family: "title-font";
+  font-weight: normal;
+  src: url("styles/fonts/title-font") format("truetype");
+}
+
+@font-face {
+  font-family: "title-font";
+  font-weight: bold;
+  src: url("styles/fonts/title-font") format("truetype");
+}
+
+@font-face {
+  font-family: "main-font";
+  font-weight: normal;
+  src: url("styles/fonts/main-font") format("truetype");
+}
+
+@font-face {
+  font-family: "main-font";
+  font-weight: bold;
+  src: url("styles/fonts/main-font") format("truetype");
+}
+
+$font-title: "title-font";
+$font-main: "main-font";
+
+$color-major: "";
+$color-minor: "";
+$color-third: "";
+
+$font-size-lg: 24px;
+$font-size-md: 16px;
+$font-size-sm: 14px;

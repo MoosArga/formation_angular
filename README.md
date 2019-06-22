@@ -18,4 +18,3 @@ Pour celles et ceux qui sont sur Mac, pour écrire les symboles suivants, vous d
 # Javascript et Typescript 
 
 - TP : https://plnkr.co/edit/hVlBZvzPBOd9fsdTeaTk
-
