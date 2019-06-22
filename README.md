@@ -4,7 +4,7 @@
 - VS Code : https://code.visualstudio.com/download
 - Node : https://nodejs.org/en/download/
 
-Pour celle et ceux qui sont sur Mac, pour écrire les symboles suivants, vous devez utilisez les combinaisons de touches suivantes : 
+Pour celles et ceux qui sont sur Mac, pour écrire les symboles suivants, vous devez utilisez les combinaisons de touches suivantes : 
 
 - `{` : option + (
 - `}` : option + )
