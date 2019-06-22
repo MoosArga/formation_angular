@@ -1,0 +1,16 @@
+@import "../var";
+
+.indicators-legend {
+  font-family: $font-title;
+  font-size: $font-size-md;
+}
+
+.indicators-creation {
+  height: 200px;
+  font-family: $font-main;
+}
+
+.indicators-recent {
+  height: 600px;
+  font-family: $font-main;
+}

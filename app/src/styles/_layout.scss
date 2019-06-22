@@ -1,0 +1,28 @@
+@import "var";
+
+.l-content {
+
+}
+
+.l-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 80px;
+  background-color: $color-major;
+  color: white;
+}
+
+#logo {
+  margin-left: 2%;
+  width: 60px;
+  height: 60px;
+}
+
+#main-title {
+  font-family: $font-title;
+  font-size: $font-size-lg;
+  margin-left: 2%;
+  letter-spacing: 2px;
+}
+

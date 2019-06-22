@@ -1,21 +1,18 @@
-# Formation
+# DataViz 
 
-Pour se connecter à votre session : `<num-stagiaire>-angular-2406.training.retengr.com`
+Librairie ng2-charts :
+- [Documentation](https://valor-software.com/ng2-charts/)
+- [GitHub](https://github.com/valor-software/ng2-charts)
 
-# Liens Utiles
+---
 
-- Git : https://git-scm.com/download/mac
-- VS Code : https://code.visualstudio.com/download
-- Node : https://nodejs.org/en/download/
-
-Pour celles et ceux qui sont sur Mac, pour écrire les symboles suivants, vous devez utilisez les combinaisons de touches suivantes : 
-
-- `{` : option + (
-- `}` : option + )
-- `[` : option + shift + (
-- `]` : option + shift + )
-
-# Javascript et Typescript 
-
-- TP : https://plnkr.co/edit/hVlBZvzPBOd9fsdTeaTk
-
+- Récupérer la branche **tp3** : **git checkout tp3**
+- L’application est composée d’un entête et deux sections : 
+    - Une section de saisie de formules et de données
+    - Une section d’affichage des graphiques
+- **Exercice 1 :**
+    - Ajouter 2 champs de saisie dans la première section correspondant aux variables a et b de la fonction ax + b. 
+    - Dans la seconde section, afficher la courbe ax +b dans un graphique de type LineChart
+- **Exercice 2 :**
+    - Ajouter 4 champs de saisie dans la première section correspondant aux coûts de votre projet : bug, analyse, report et dette logicielle
+    - Dans la seconde section, afficher la répartition de ces 4 coûts dans un graphique de type PieChart
