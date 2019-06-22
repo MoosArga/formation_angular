@@ -1,0 +1,29 @@
+
+@font-face {
+  font-family: "title-font";
+  font-weight: normal;
+  src: url("./fonts/title-font/Anton-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "main-font";
+  font-weight: normal;
+  src: url("./fonts/main-font/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "main-font";
+  font-weight: bold;
+  src: url("./fonts/main-font/OpenSans-Bold.ttf") format("truetype");
+}
+
+$font-title: "title-font";
+$font-main: "main-font";
+
+$color-major: #162C44;
+$color-minor: "";
+$color-third: "";
+
+$font-size-lg: 48px;
+$font-size-md: 24px;
+$font-size-sm: 14px;

@@ -1,0 +1,16 @@
+@import "../var";
+
+.delivery-legend {
+  font-family: $font-title;
+  font-size: $font-size-md;
+}
+
+.delivery-creation {
+  height: 500px;
+  font-family: $font-main;
+}
+
+.delivery-recent {
+  height: 200px;
+  font-family: $font-main;
+}
