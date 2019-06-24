@@ -1,3 +1,7 @@
+# Formation
+
+Pour se connecter à votre session : `<num-stagiaire>-angular-2406.training.retengr.com`
+
 # Liens Utiles
 
 - Git : https://git-scm.com/download/mac
@@ -14,3 +18,4 @@ Pour celles et ceux qui sont sur Mac, pour écrire les symboles suivants, vous d
 # Javascript et Typescript 
 
 - TP : https://plnkr.co/edit/hVlBZvzPBOd9fsdTeaTk
+
