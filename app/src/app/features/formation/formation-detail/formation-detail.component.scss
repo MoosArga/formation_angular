@@ -1,0 +1,23 @@
+.palette {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+  width: 100%;
+  > * {
+    flex: 0 0 50%;
+  }
+}
+
+.palette-ref {
+  width: 200px;
+}
+
+.palette-entry {
+  height: 200px;
+  width: 200px;
+}
+
+.palette-diff {
+  display: flex;
+  flex-direction: column;
+}
