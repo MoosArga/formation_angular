@@ -1,0 +1,11 @@
+<h1>{{ titreFormation }}</h1>
+<div></div>
+<div>{{ dateDujour | date:'dd/MM/yyyy' }}</div>
+<div>
+  <form >
+    <input type="text" [(ngModel)]="nbFormation" name="nb-formation-field">
+    <!-- <input type="text" [value]="nbFormation" name="nb-formation-field"> -->
+    <button (click)="ajouterFormation()">Ajouter formation</button>
+    <button (click)="retirerFormation()">Retirer formation</button>
+  </form>
+</div>
