@@ -1,5 +1,10 @@
 <h1>{{ titreFormation }}</h1>
-<div></div>
+<div>
+  <ul *ngIf="formation$ | async; let formations">
+    <li *ngFor="let f of formations">{{ f.nom }}</li>
+  </ul>
+  <ng-content></ng-content>
+</div>
 <div>{{ dateDujour | date:'dd/MM/yyyy' }}</div>
 <div>
   <form >

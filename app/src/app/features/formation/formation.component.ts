@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormationDaoService } from 'src/app/shared/service/formation-dao.service';
+import { Pair } from 'src/app/shared/model/pair';
+import { Observable } from 'rxjs';
+import { Formation } from 'src/app/shared/model/formation';
 
 @Component({
   selector: 'app-formation',
@@ -11,10 +14,12 @@ export class FormationComponent implements OnInit {
   titreFormation = 'Mes formations';
   dateDujour = new Date();
   nbFormation = 0;
+  formation$: Observable<Formation[]>;
 
   constructor(private formationDaoService: FormationDaoService) { }
 
   ngOnInit() {
+    this.formation$ = this.formationDaoService.getFormations();
   }
 
 
