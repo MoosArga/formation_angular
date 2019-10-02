@@ -1,7 +1,14 @@
 <h1>{{ titreFormation }}</h1>
 <div>
   <ul *ngIf="formation$ | async; let formations">
-    <li *ngFor="let f of formations">{{ f.nom }}</li>
+    <ng-container *ngFor="let f of formations">
+      <li *ngIf="f.chargeH > 0; else formationFinished" [class.grosse-formation]="f.chargeH > 20">
+        {{ f.nom }} : {{ f.chargeH }}. Vous avez obtenu la note de {{ f.note | notation }}
+      </li>
+      <ng-template #formationFinished>
+        <li>La formation {{ f.nom }} est finie !</li>
+      </ng-template>
+    </ng-container>
   </ul>
   <ng-content></ng-content>
 </div>
