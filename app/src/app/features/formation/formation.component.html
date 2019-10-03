@@ -4,6 +4,7 @@
     <ng-container *ngFor="let f of formations">
       <li *ngIf="f.chargeH > 0; else formationFinished" [class.grosse-formation]="f.chargeH > 20">
         {{ f.nom }} : {{ f.chargeH }}. Vous avez obtenu la note de {{ f.note | notation }}
+        <app-progress-bar [progression]="f.note * 10" (survolProgressBar)="userOverProgressBar($event)"></app-progress-bar>
       </li>
       <ng-template #formationFinished>
         <li>La formation {{ f.nom }} est finie !</li>
@@ -21,3 +22,9 @@
     <button (click)="retirerFormation()">Retirer formation</button>
   </form>
 </div>
+<br>
+<h2>Création d'un utilisateur</h2>
+<app-edit-user [user]="newUser" (onValider)="createUser($event)"></app-edit-user>
+
+<h2>Modification d'un utilisateur</h2>
+<app-edit-user [user]="existantUser" (onValider)="modifyUser($event)"></app-edit-user>

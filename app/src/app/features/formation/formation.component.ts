@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormationDaoService } from 'src/app/shared/service/formation-dao.service';
-import { Pair } from 'src/app/shared/model/pair';
 import { Observable } from 'rxjs';
 import { Formation } from 'src/app/shared/model/formation';
+import { User } from 'src/app/shared/model/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-formation',
@@ -11,15 +12,22 @@ import { Formation } from 'src/app/shared/model/formation';
 })
 export class FormationComponent implements OnInit {
 
-  titreFormation = 'Mes formations';
+  titreFormation: string;
   dateDujour = new Date();
   nbFormation = 0;
   formation$: Observable<Formation[]>;
 
-  constructor(private formationDaoService: FormationDaoService) { }
+  newUser: User = new User();
+  existantUser: User = new User('Sanchez', 'Jerome');
+
+  constructor(private route: ActivatedRoute,
+              private formationDaoService: FormationDaoService) { }
 
   ngOnInit() {
     this.formation$ = this.formationDaoService.getFormations();
+    this.route.data.subscribe(data => {
+      this.titreFormation = data.titre;
+    })
   }
 
 
@@ -29,6 +37,18 @@ export class FormationComponent implements OnInit {
 
   retirerFormation(): void {
     this.nbFormation = +this.nbFormation - 1;
+  }
+
+  userOverProgressBar(p: number): void {
+    console.log("L'utilisateur chercher qq chose sur la formation dont l'avantcement est de " + p);
+  }
+
+  createUser(user: User): void {
+    console.log('On va créer ' + user.nom + ' ' + user.prenom);
+  }
+
+  modifyUser(user: User): void {
+    console.log('On va modifier ' + user.nom + ' ' + user.prenom);
   }
 
 }
