@@ -3,7 +3,10 @@ import { FormationDaoService } from 'src/app/shared/service/formation-dao.servic
 import { Observable } from 'rxjs';
 import { Formation } from 'src/app/shared/model/formation';
 import { User } from 'src/app/shared/model/user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { tap, map, startWith, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { FormationStore } from 'src/app/shared/store/formation.store';
 
 @Component({
   selector: 'app-formation',
@@ -12,22 +15,35 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormationComponent implements OnInit {
 
-  titreFormation: string;
+  titreFormation$: Observable<string>;
   dateDujour = new Date();
   nbFormation = 0;
   formation$: Observable<Formation[]>;
+
+  searchFormation: FormControl = new FormControl('');
 
   newUser: User = new User();
   existantUser: User = new User('Sanchez', 'Jerome');
 
   constructor(private route: ActivatedRoute,
-              private formationDaoService: FormationDaoService) { }
+              private formationDaoService: FormationDaoService,
+              private formationStore: FormationStore,
+              private router: Router) { }
 
   ngOnInit() {
     this.formation$ = this.formationDaoService.getFormations();
-    this.route.data.subscribe(data => {
-      this.titreFormation = data.titre;
-    })
+    this.titreFormation$ = this.route.data.pipe(
+      map(data => data.titre)
+    );
+    this.formation$ = this.searchFormation.valueChanges.pipe(
+      startWith(''),
+      debounceTime(1000),
+      map(x => x || ''),
+      distinctUntilChanged(),
+      filter(x => !x || x.length > 2),
+      map(x => x.trim().toLowerCase()),
+      switchMap(x => this.formationDaoService.getFormationLikeName(x))
+    );
   }
 
 
@@ -49,6 +65,11 @@ export class FormationComponent implements OnInit {
 
   modifyUser(user: User): void {
     console.log('On va modifier ' + user.nom + ' ' + user.prenom);
+  }
+
+  goToFormation(f: Formation): void {
+    this.formationStore.setCurrentFormation(f);
+    this.router.navigate(['./formation-detail'], { relativeTo: this.route});
   }
 
 }

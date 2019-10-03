@@ -1,9 +1,12 @@
-<h1>{{ titreFormation }}</h1>
+<h1>{{ titreFormation$ | async }}</h1>
+<input type="text" [formControl]="searchFormation">
 <div>
   <ul *ngIf="formation$ | async; let formations">
     <ng-container *ngFor="let f of formations">
       <li *ngIf="f.chargeH > 0; else formationFinished" [class.grosse-formation]="f.chargeH > 20">
-        {{ f.nom }} : {{ f.chargeH }}. Vous avez obtenu la note de {{ f.note | notation }}
+
+        <button (click)="goToFormation(f)">{{ f.nom }}</button> : {{ f.chargeH }}. Vous avez obtenu la note de {{ f.note | notation }}
+
         <app-progress-bar [progression]="f.note * 10" (survolProgressBar)="userOverProgressBar($event)"></app-progress-bar>
       </li>
       <ng-template #formationFinished>

@@ -1,0 +1,9 @@
+<form>
+  <label>Titre de la formation</label>
+  <input type="text" [(ngModel)]="tFormation" name="tformation-field" #tc="ngModel"
+    required minlength="2" pattern="[a-zA-Z]*">
+  <pre>
+    {{ tc.errors | json}}
+  </pre>
+  <button [disabled]="tc.invalid">Valider</button>
+</form>

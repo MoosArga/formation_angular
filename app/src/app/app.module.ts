@@ -5,17 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormationModule } from './features/formation/formation.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorComponent } from './layout/error/error.component';
+import { FormationStore } from './shared/store/formation.store';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [FormationStore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

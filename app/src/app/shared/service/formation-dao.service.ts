@@ -15,12 +15,16 @@ export class FormationDaoService {
     return this.http.get<Formation[]>('/api/formations');
   }
 
-  getFormationByName(name: string): Observable<Formation> {
+  getFormationByName(name: string): Observable<Formation[]> {
     let httpParams: HttpParams = new HttpParams();
     httpParams = httpParams.set('nom', name);
-    return this.http.get<Formation>('/api/formations', { params: httpParams }).pipe(
-      map(m => m[0])
-      );
+    return this.http.get<Formation[]>('/api/formations', { params: httpParams });
+  }
+
+  getFormationLikeName(name: string): Observable<Formation[]> {
+    let httpParams: HttpParams = new HttpParams();
+    httpParams = httpParams.set('nom_like', name);
+    return this.http.get<Formation[]>('/api/formations', { params: httpParams });
   }
 
 }
