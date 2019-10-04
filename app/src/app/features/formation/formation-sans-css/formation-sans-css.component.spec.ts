@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormationDetailComponent } from './formation-detail.component';
+import { FormationSansCssComponent } from './formation-sans-css.component';
 
-describe('FormationDetailComponent', () => {
-  let component: FormationDetailComponent;
-  let fixture: ComponentFixture<FormationDetailComponent>;
+describe('FormationSansCssComponent', () => {
+  let component: FormationSansCssComponent;
+  let fixture: ComponentFixture<FormationSansCssComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormationDetailComponent ]
+      declarations: [ FormationSansCssComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormationDetailComponent);
+    fixture = TestBed.createComponent(FormationSansCssComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

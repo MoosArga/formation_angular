@@ -8,8 +8,7 @@ import { FormationStore } from 'src/app/shared/store/formation.store';
 
 @Component({
   selector: 'app-formation-detail',
-  templateUrl: './formation-detail.component.html',
-  styleUrls: ['./formation-detail.component.scss']
+  templateUrl: './formation-detail.component.html'
 })
 export class FormationDetailComponent implements OnInit, OnDestroy {
 

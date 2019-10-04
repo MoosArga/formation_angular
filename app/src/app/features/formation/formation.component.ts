@@ -42,7 +42,9 @@ export class FormationComponent implements OnInit {
       distinctUntilChanged(),
       filter(x => !x || x.length > 2),
       map(x => x.trim().toLowerCase()),
-      switchMap(x => this.formationDaoService.getFormationLikeName(x))
+      switchMap(x => {
+        return this.formationDaoService.getFormationLikeName(x);
+      })
     );
   }
 

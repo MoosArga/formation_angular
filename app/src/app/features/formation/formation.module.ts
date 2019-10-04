@@ -7,9 +7,10 @@ import { FormationRoutingModule } from './formation-routing.module';
 import { FormationDetailComponent } from './formation-detail/formation-detail.component';
 import { FormationFormValidationComponent } from './formation-form-validation/formation-form-validation.component';
 import { FormationDetailWithApiComponent } from './formation-detail-with-api/formation-detail-with-api.component';
+import { FormationSansCssComponent } from './formation-sans-css/formation-sans-css.component';
 
 @NgModule({
-  declarations: [FormationComponent, FormationDetailComponent, FormationFormValidationComponent, FormationDetailWithApiComponent],
+  declarations: [FormationComponent, FormationDetailComponent, FormationFormValidationComponent, FormationDetailWithApiComponent, FormationSansCssComponent],
   imports: [
     CommonModule,
     SharedModule,
