@@ -1,0 +1,9 @@
+<h1 [title]="titleHelper">{{ title }}</h1>
+<div></div>
+<div>{{ dateDuJour | date:'dd/MM/yyyy' }}</div>
+<div>
+  <form>
+    <input type="text" [value]="nbFormation" name="nb-formation-field">
+    <button (click)="addFormation()">Ajouter</button>
+    <button (click)="removeFormation()">Retirer</button></form>
+</div>
