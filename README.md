@@ -1,6 +1,6 @@
 # Formation
 
-Pour se connecter à votre session : `<num-stagiaire>-angular-2406.training.retengr.com`
+Pour se connecter à votre session : `http://prenom-nom-adf2021029.training.retengr.com`
 
 # Liens Utiles
 
