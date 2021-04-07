@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NotationPipe implements PipeTransform {
 
-  transform(value: string, ...args: string[]): string {
+  transform(value: number, ...args: string[]): string {
     return value + '/10';
   }
 

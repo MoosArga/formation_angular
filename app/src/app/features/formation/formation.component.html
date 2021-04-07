@@ -1,9 +1,29 @@
 <h1 [title]="titleHelper">{{ title }}</h1>
-<div></div>
+<ng-container *ngIf="formation$ | async; let formationModel">
+  <div>
+    <app-progress-bar [progression]="formationModel.moyenne" (survolProgressBar)="constaterMoyenne($event)">
+    </app-progress-bar>
+  </div>
+  <div>
+    <ul>
+      <ng-container *ngFor="let f of formationModel.formations">
+        <li *ngIf="f.chargeH === 0; else formationEnCours">La formation {{ f.nom }} est finie !</li>
+        <ng-template #formationEnCours>
+          <li [class.formation-en-retard]="f.chargeH >= 20">
+            {{ f.nom | lowercase }} : {{ f.chargeH }} heures restantes. Vous avez obtenu {{ f.note | notation }}
+            <app-progress-bar [progression]="f.note" (survolProgressBar)="userWantsDetails($event)">
+            </app-progress-bar>
+          </li>
+        </ng-template>
+      </ng-container>
+    </ul>
+  </div>
+</ng-container>
 <div>{{ dateDuJour | date:'dd/MM/yyyy' }}</div>
 <div>
   <form>
     <input type="text" [value]="nbFormation" name="nb-formation-field">
     <button (click)="addFormation()">Ajouter</button>
-    <button (click)="removeFormation()">Retirer</button></form>
+    <button (click)="removeFormation()">Retirer</button>
+  </form>
 </div>
