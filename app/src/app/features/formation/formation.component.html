@@ -1,4 +1,5 @@
-<h1 [title]="titleHelper">{{ title }}</h1>
+<h1 [title]="titleHelper">{{ titrePage$ | async }}</h1>
+<input type="text" [formControl]="nomFormation"/>
 <ng-container *ngIf="formation$ | async; let formationModel">
   <div>
     <app-progress-bar [progression]="formationModel.moyenne" (survolProgressBar)="constaterMoyenne($event)">
@@ -13,6 +14,11 @@
             {{ f.nom | lowercase }} : {{ f.chargeH }} heures restantes. Vous avez obtenu {{ f.note | notation }}
             <app-progress-bar [progression]="f.note" (survolProgressBar)="userWantsDetails($event)">
             </app-progress-bar>
+            <ul>
+              <li><a routerLink="formation-detail" [queryParams]="{ nomFormation: f.nom }"
+                  fragment="formation-card">Query</a></li>
+              <li><a [routerLink]="[f.nom]">Path</a></li>
+            </ul>
           </li>
         </ng-template>
       </ng-container>
@@ -27,3 +33,18 @@
     <button (click)="removeFormation()">Retirer</button>
   </form>
 </div>
+<div>
+  <form #monFormulaire="ngForm" [ngFormOptions]="{ updateOn: 'change' }">
+    <div>
+      <label for="id-titre-formation-field">Titre formation</label>
+      <input class="input-validation" type="text" [(ngModel)]="tFormation" name="titre-formation-field" id="id-titre-formation-field"
+        minlength="2" pattern="[a-zA-Z]*" #tc="ngModel">
+      <pre>
+        {{ tc.errors | json }}
+      </pre>
+    </div>
+    {{ monFormulaire.pristine }}
+    <button [disabled]="monFormulaire.invalid">Valider</button>
+  </form>
+</div>
+{{ dumb$ | async }}
