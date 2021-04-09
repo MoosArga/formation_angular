@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, Observable, of, Subscription } from 'rxjs';
+import { BehaviorSubject, interval, Observable, of, Subscription } from 'rxjs';
 import { Formation } from 'src/app/shared/model/formation';
 import { FormationIhmModel } from 'src/app/shared/model/formation-ihm-model';
 import { FormationDaoService } from 'src/app/shared/service/formation-dao.service';
@@ -15,7 +15,8 @@ import { Dumb } from 'src/app/shared/model/dumb';
 })
 export class FormationComponent implements OnInit, OnDestroy {
 
-  dumb$: Observable<Dumb>;
+  customObservable$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  myObs$: Observable<number>;
 
   nomFormation: FormControl = new FormControl();
   toto$: Observable<string>;
@@ -62,6 +63,9 @@ export class FormationComponent implements OnInit, OnDestroy {
         return result;
       })
     );
+
+
+    this.myObs$ = this.getCustomObservable();
   }
 
 
@@ -71,7 +75,7 @@ export class FormationComponent implements OnInit, OnDestroy {
         // //
         return of([]);
       })
-    )
+    );
   }
 
   ngOnDestroy(): void {
@@ -80,10 +84,12 @@ export class FormationComponent implements OnInit, OnDestroy {
 
   addFormation(): void {
     this.nbFormation = parseInt(this.nbFormation.toString(), 10) + 1;
+    this.pushValueInCustomObservable(this.nbFormation);
   }
 
   removeFormation(): void {
     this.nbFormation = parseInt(this.nbFormation.toString(), 10) - 1;
+    this.pushValueInCustomObservable(this.nbFormation);
   }
 
   userWantsDetails(progression: number): void {
@@ -101,6 +107,14 @@ export class FormationComponent implements OnInit, OnDestroy {
 
   toggleFormations(): void {
     this.isOpen = !this.isOpen;
+  }
+
+  getCustomObservable(): Observable<number> {
+    return this.customObservable$.asObservable();
+  }
+
+  pushValueInCustomObservable(num: number): void {
+    this.customObservable$.next(num);
   }
 
 }

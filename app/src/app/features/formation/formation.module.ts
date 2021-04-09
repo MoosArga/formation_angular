@@ -7,13 +7,15 @@ import { FormationRoutingModule } from './formation-routing.module';
 import { FormationPathDetailComponent } from './formation-path-detail/formation-path-detail.component';
 import { FormationQueryDetailComponent } from './formation-query-detail/formation-query-detail.component';
 import { FormationCardComponent } from './formation-card/formation-card.component';
+import { FormationSansTestComponent } from './formation-sans-test/formation-sans-test.component';
 
 @NgModule({
   declarations: [
     FormationComponent,
     FormationPathDetailComponent,
     FormationQueryDetailComponent,
-    FormationCardComponent
+    FormationCardComponent,
+    FormationSansTestComponent
   ],
   imports: [
     CommonModule,

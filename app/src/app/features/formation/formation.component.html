@@ -1,8 +1,8 @@
-<h1 [title]="titleHelper">{{ titrePage$ | async }}</h1>
+<h1 [title]="titleHelper" appSuiviUser="Clique sur le titre">{{ titrePage$ | async }}</h1>
 <input type="text" [formControl]="nomFormation"/>
 <ng-container *ngIf="formation$ | async; let formationModel">
   <div>
-    <app-progress-bar [progression]="formationModel.moyenne" (survolProgressBar)="constaterMoyenne($event)">
+    <app-progress-bar appSuiviUser="Clique sur la moyenne" [progression]="formationModel.moyenne" (survolProgressBar)="constaterMoyenne($event)">
     </app-progress-bar>
   </div>
   <div>
@@ -15,9 +15,9 @@
             <app-progress-bar [progression]="f.note" (survolProgressBar)="userWantsDetails($event)">
             </app-progress-bar>
             <ul>
-              <li><a routerLink="formation-detail" [queryParams]="{ nomFormation: f.nom }"
+              <li><a [appSuiviUser]="'Clique sur le lien query de ' + f.nom" routerLink="formation-detail" [queryParams]="{ nomFormation: f.nom }"
                   fragment="formation-card">Query</a></li>
-              <li><a [routerLink]="[f.nom]">Path</a></li>
+              <li><a [appSuiviUser]="'Clique sur le lien path de ' + f.nom" [routerLink]="[f.nom]">Path</a></li>
             </ul>
           </li>
         </ng-template>
@@ -29,7 +29,7 @@
 <div>
   <form>
     <input type="text" [value]="nbFormation" name="nb-formation-field">
-    <button (click)="addFormation()">Ajouter</button>
+    <button appSuiviUser="Clique sur ajouter" (click)="addFormation()">Ajouter</button>
     <button (click)="removeFormation()">Retirer</button>
   </form>
 </div>
@@ -47,4 +47,4 @@
     <button [disabled]="monFormulaire.invalid">Valider</button>
   </form>
 </div>
-{{ dumb$ | async }}
+{{ myObs$ | async }}

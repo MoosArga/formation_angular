@@ -1,0 +1,5 @@
+<div class="modal" [ngClass]="open ? 'modal-opened' : 'modal-closed'">
+  <div class="modal-content" *ngIf="open">
+    <ng-content></ng-content>
+  </div>
+</div>
