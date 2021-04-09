@@ -1,0 +1,2 @@
+<!-- <p>{{ formation$ | async | json }}</p>-->
+<app-formation-card *ngIf="formation$ | async;let formation" [formation]="formation"></app-formation-card>

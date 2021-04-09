@@ -1,0 +1,38 @@
+<div>
+  <input type="text" [formControl]="nomFormation" name="nomFormation-field" />
+</div>
+<hr />
+<ng-container *ngIf="formation$ | async; let formations">
+  <div>
+    <h1>{{data$ | async}}</h1>
+    <app-progression-bar [avancement]="calcul(formations)" (catchInteraction)="action1($event)"></app-progression-bar>
+  </div>
+  <div>
+    <ul>
+    <ng-container *ngFor="let formation of formations">
+        <li *ngIf="formation.chargeH===0;else formationEnCours">La formation {{ formation.nom}} est finie !</li>
+        <ng-template #formationEnCours>
+          <!--<li [class.later]="formation.chargeH>=20">{{ formation.nom | lowercase }} : {{formation.chargeH }} avec une note {{formation.note | notation}}</li>-->
+          <li [class.later]="formation.chargeH>=20"><a [routerLink]="[formation.nom]">Path {{ formation.nom | lowercase }}</a> : {{formation.chargeH }} avec une note {{formation.note | notation}}</li>
+          <li [class.later]="formation.chargeH>=20"><a routerLink="formation-detail" [queryParams]="{nomFormation : formation.nom}">Query {{ formation.nom | lowercase }}</a> : {{formation.chargeH }} avec une note {{formation.note | notation}}</li>
+          <app-progression-bar [avancement]="formation.note" (catchInteraction)="action($event)"></app-progression-bar>
+        </ng-template>
+    </ng-container>
+    </ul>
+  </div>
+</ng-container>
+<div>{{today | date:"dd/MM/yyyy"}}</div>
+<div>
+  <form action="">
+  <input type="text" [(ngModel)]="nbFormation" name="nbFormation-field" />
+  <button (click)="addFormation()">AddFormation</button>
+  <button (click)="delFormation()">DelFormation</button>
+  </form>
+</div>
+<hr />
+<form #myForm="ngForm">
+  <label for="tformation-field">Titre formation</label>
+  <input class="input-custom" id="tformation-field" type="text" [(ngModel)]="tFormation" name="tformation-field" minlength="2" pattern="[a-z]*" #tc="ngModel" />
+  <pre>{{ tc.errors | json}}</pre>
+  <button [disabled]="myForm.invalid">Valider</button>
+</form>
