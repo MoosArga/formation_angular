@@ -1,0 +1,7 @@
+<p>formation-path-detail works!</p>
+
+<ng-container *ngIf= "formationCourante$ | async; let formation" >
+
+  <app-formation-card [formation] = formation></app-formation-card>
+
+</ng-container>

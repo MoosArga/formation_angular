@@ -1,0 +1,46 @@
+
+<h1>{{$titre | async}}</h1>
+<div></div>
+<div>{{date | date: 'dd/MM/YYY | hh : ss'}}</div>
+
+
+<form>
+  <input type="text" [formControl]= "nomFormation">
+</form>
+
+<ng-container *ngIf ="formations$ | async; let formations">
+
+  <div>moyenne : {{calculeMoyenne(formations)}}
+    <app-progression-bar (catchSurvol)= "catchSurvol()" [note]= "calculeMoyenne(formations)"></app-progression-bar>
+ </div>
+
+
+  <ul>
+    <li *ngFor = "let forma of formations">
+      <span [ngClass] = "{ 'formationRetard' : forma.chargeH > 20}"> {{forma.nom | lowercase}}</span>
+      <span *ngIf = "forma.chargeH === 0; else formationNonFini "> est finie</span>
+      <ng-template #formationNonFini>
+        {{forma.chargeH.toString()}}
+        <app-progression-bar (catchSurvol)= "catchSurvol()" [note]= "forma.note"></app-progression-bar>
+      </ng-template>
+      <span> | Note : {{forma.note | notation}}</span>
+
+      <a [routerLink]= "['formation-detail/']" [queryParams] = "{ nomFormation: forma.nom}">  Formation detail by query  </a>
+      <a [routerLink]= "[forma.nom]">  Formation detail by path  </a>
+
+    </li>
+  </ul>
+
+
+  <div>
+    <form>
+      <input [value]="nombreFormation" name="nombreimput">
+      <button (click)="ajouterFormation()">AJOUT</button>
+      <button (click)="supprimerFormation()">SUPPRESSION</button>
+    </form>
+  </div>
+</ng-container>
+
+
+<div></div>
+<div></div>
