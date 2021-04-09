@@ -1,0 +1,24 @@
+<div *ngIf="covids$ | async; let covids">
+  <table>
+    <thead>
+      <tr>
+        <td>Pays / Région</td>
+        <td>Etat / Province</td>
+        <td>Nombre de cas confirmés</td>
+        <td>Nombre de décès</td>
+        <td>Nombre de guérisons</td>
+        <td>Nombre de cas actif</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of covids.covids">
+        <td>{{ c.countryRegion }}</td>
+        <td>{{ c.provinceState }}</td>
+        <td>{{ c.confirmed }}</td>
+        <td>{{ c.deaths }}</td>
+        <td>{{ c.recovered }}</td>
+        <td>{{ c.active }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
