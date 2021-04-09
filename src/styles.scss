@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+.input-validation:focus{
+  border-left: 10px solid cyan;
+}
+
+.input-validation.ng-invalid{
+  border-left: 10px solid red;
+}
+
+.input-validation.ng-valid.ng-dirty{
+  border-left: 10px solid green;
+}

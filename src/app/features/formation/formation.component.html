@@ -1,0 +1,42 @@
+<h1 [title]="titreCom">{{titre}}</h1>
+
+<input type="text" [formControl]="nomFormation" />
+
+<ng-container *ngIf="formations$ | async; let formations">
+  <app-progress-bar [progression]="calculMoyenne(formations)" (survol)="logMoyenne($event)"></app-progress-bar>
+  <div>
+    <ul>
+      <ng-container *ngFor="let f of formations">
+        <li *ngIf="f.chargeH === 0; else formationEncours">La formation {{ f.nom }} est terminée.</li>
+        <ng-template #formationEncours>
+          <li [class.formation-en-retard]="f.chargeH >= 10">
+            {{ f.nom | lowercase}} : {{ f.chargeH }} - {{ f.note.toString() | notation }} -- {{ f | json }}
+            <!--progress id="progress" max="10" value="{{ f.note }}"></progress-->
+            <app-progress-bar [progression]="f.note" (survol)="log($event)" ></app-progress-bar>
+            <a routerLink="formation-detail" [queryParams]="{nomFormation:f.nom}">formation-detail</a>
+            <a [routerLink]="[f.nom]">:nomformation</a>
+              <router-outlet></router-outlet>
+          </li>
+        </ng-template>
+      </ng-container>
+      <!--li *ngFor="let formation of formations$ | async" [class.formation-en-retard]="formation.chargeH >= 10">
+        {{ formation.nom | lowercase}} : {{ formation.chargeH }} - {{ formation.note.toString() | notation }} -- {{ formation | json }}
+      </li-->
+    </ul>
+  </div>
+</ng-container>
+<div>{{date | date:'dd/MM/yyyy'}}</div>
+<div>
+  <input [(ngModel)]="nbr" name="nbr"/>
+  <button (click)="add()">{{ btnAdd }}</button>
+  <button (click)="remove()">{{ btnRem }}</button>
+</div>
+<br/>
+<form #formValid="ngForm">
+  <label for="toto">Titre formation : </label>
+  <input class="input-validation" id="toto" [(ngModel)]="tFormation" name="tFormation" minlength="2" pattern="[a-zA-Z]*" #tc="ngModel" />
+  <pre>
+    {{ tc.errors | json }}
+  </pre>
+  <button [disabled]="formValid.invalid" >bouton</button>
+</form>
