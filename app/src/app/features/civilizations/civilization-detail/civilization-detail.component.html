@@ -1,0 +1,25 @@
+<div *ngIf="civilization$ | async; let civilization">
+  <h2>{{ civilization.name }}</h2>
+  <p>Apparu dans l'extension {{ civilization.expansion }}, les {{ civilization.name }}
+    sont spécialisés dans {{ civilization.army_type }}.</p>
+  <ul>
+    <li *ngIf="civilization.unique_unit && civilization.unique_unit.length">
+      Unité spéciale :
+      <ul>
+        <li *ngFor="let u of civilization.uniqueUnitName"><a [routerLink]="['/units', u]">{{ u }}</a></li>
+      </ul>
+    </li>
+    <li>Bonus
+      <ul>
+        <li *ngFor="let b of civilization.civilization_bonus">
+          {{ b }}
+        </li>
+      </ul>
+    </li>
+    <li>Bonus en équipe
+      <ul>
+        <li>{{ civilization.team_bonus }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,5 @@
+<div *ngIf="units$ | async; let units">
+  <ol class="list">
+    <li class="list-item" *ngFor="let u of units"><a [routerLink]="[u.id]">{{ u.name }}</a> : {{ u.description }}</li>
+  </ol>
+</div>

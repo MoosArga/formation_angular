@@ -1,0 +1,12 @@
+<div *ngIf="unit$ | async; let unit">
+<h2>{{ unit.name }}</h2>
+<p>{{ unit.description }}</p>
+<p>Apparu dans l'extension {{ unit.expansion }}, les {{ unit.name }} sont accesibles l'âge {{ unit.age }}.</p>
+<p>Ils mettent {{ unit.build_time }} secondes à être construit et coûtent : </p>
+<ul>
+  <li>Bois : {{ unit.cost.Wood || 0}}</li>
+  <li>Pierre : {{ unit.cost.Stone || 0}}</li>
+  <li>Or : {{ unit.cost.Gold || 0 }}</li>
+  <li>Nourriture : {{ unit.cost.Food || 0}}</li>
+</ul>
+</div>

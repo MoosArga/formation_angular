@@ -14,7 +14,6 @@
 
 #logo {
   width: 120px;
-  height: 120px;
   margin-left: 10%;
 }
 
@@ -38,14 +37,21 @@
     justify-content: center;
     > * {
     margin: 30px;
-      &:hover {
-        color: $color-minor;
-        cursor: pointer;
-      }
     }
   }
 }
 
 .l-menu-item {
   list-style: none;
+  cursor: pointer;
+  > * {
+    color: white;
+    text-decoration: none;
+    &:visited {
+      color: white;
+    }
+    &.l-menu-item-active, &:active, &:hover {
+      color: $color-minor;
+    }
+  }
 }

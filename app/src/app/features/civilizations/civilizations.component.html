@@ -1,0 +1,5 @@
+<div *ngIf="civilizations$ | async; let civilizations">
+  <ol class="list">
+    <li class="list-item" *ngFor="let c of civilizations"><a [routerLink]="[c.id]">{{ c.name }}</a> : {{ c.expansion }}</li>
+  </ol>
+</div>
