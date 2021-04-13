@@ -1,0 +1,13 @@
+@import "../var";
+
+.form {
+  > * + * {
+    margin-top: 20px;
+  }
+}
+
+.form-entry {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}

@@ -1,0 +1,9 @@
+<div *ngIf="model && model.errors">
+  <div *ngIf="model.errors.required">
+    Le champs {{ fieldWording }} est obligatoire.
+  </div>
+  <div *ngIf="model.errors.pattern">
+    Le champs {{ fieldWording }} doit contenir {{ patternErrorMessage }}
+  </div>
+  <ng-content></ng-content>
+</div>

@@ -1,6 +1,39 @@
 <fieldset class="delivery-creation">
   <legend class="delivery-legend">Création de commande</legend>
+  <form class="form" #cmdForm="ngForm">
+  <div class="form-entry">
+    <label for="nb-field">Nom du client</label>
+    <input id="name-field" name="name-field" [(ngModel)]="cmd.name" type="text" required pattern="^[^ ]+$">
+  </div>
+  <div class="form-entry">
+    <label for="nb-field">Nombre de couverts</label>
+    <input id="nb-field" name="nb-field" [(ngModel)]="cmd.nb" type="text" required pattern="[0-9]+">
+  </div>
+  <div class="form-entry">
+    <label for="date-resa-field">Date de réservation</label>
+    <input id="date-resa-field" name="date-resa-field" [min]="minDate | date:'yyyy-MM-ddTHH:mm'"
+    [ngModel]="cmd.dateResa | date:'yyyy-MM-ddTHH:mm'" type="datetime-local"
+    (ngModelChange)="setDateResa($event)">
+  </div>
+  <div *ngIf="cmdForm.dirty && cmdForm.invalid">
+    <app-form-error-helper [model]="cmdForm.form.get('name-field')" fieldWording="nom du client"
+    patternErrorMessage="tous les caractères hormis des espaces"></app-form-error-helper>
+    <app-form-error-helper [model]="cmdForm.form.get('nb-field')" fieldWording="nombre de couverts"
+    patternErrorMessage="des chiffres"></app-form-error-helper>
+  </div>
+  <div *ngIf="isDateBeforeNow">
+    Le champs date de réservation ne peut être antérieure à la date / heure actuelle
+  </div>
+  <div *ngIf="!isDateValid">
+    Le champs date est obligatoire
+</div>
+  <button [disabled]="cmdForm.invalid || isDateBeforeNow || !isDateValid"
+  (click)="createCommand()">Enregistrer commande</button>
+  </form>
 </fieldset>
-<fieldset class="delivery-recent">
-    <legend class="delivery-legend">Dernières commandes</legend>
+<fieldset class="delivery-recent" *ngIf="commands$ | async; let commandes">
+  <legend class="delivery-legend">Dernières commandes</legend>
+  <ul>
+    <li *ngFor="let c of commandes">Commande de {{ c.name }} pour {{ c.nb }} couverts prévue le {{ c.dateResa | date:'dd/MM/yyyy à HH:mm' }}</li>
+  </ul>
 </fieldset>
