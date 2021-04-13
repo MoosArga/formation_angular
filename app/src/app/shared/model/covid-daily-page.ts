@@ -2,7 +2,9 @@ import { CovidDaily } from './covid-daily';
 
 export class CovidDailyPage {
 
-  totalCount: number;
+  currentPages: number[];
+  currentPage: number;
   covids: CovidDaily[];
+  totalPage: number;
 
 }

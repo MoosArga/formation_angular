@@ -7,3 +7,12 @@
 body {
   margin: 0;
 }
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  td {
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+  }
+}

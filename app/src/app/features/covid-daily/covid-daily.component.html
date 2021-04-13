@@ -1,5 +1,5 @@
-<div *ngIf="covids$ | async; let covids">
-  <table>
+<div class="covid-daily" *ngIf="covids$ | async; let covids">
+  <table class="covid-daily-list">
     <thead>
       <tr>
         <td>Pays / Région</td>
@@ -14,11 +14,29 @@
       <tr *ngFor="let c of covids.covids">
         <td>{{ c.countryRegion }}</td>
         <td>{{ c.provinceState }}</td>
-        <td>{{ c.confirmed }}</td>
-        <td>{{ c.deaths }}</td>
-        <td>{{ c.recovered }}</td>
-        <td>{{ c.active }}</td>
+        <td class="table-numeric">{{ c.confirmed | number:'1.0-0' }}</td>
+        <td class="table-numeric">{{ c.deaths  | number }}</td>
+        <td class="table-numeric">{{ c.recovered | number }}</td>
+        <td class="table-numeric">{{ c.active | number }}</td>
       </tr>
     </tbody>
   </table>
+  <div class="pager covid-pager">
+    <div class="pager-previous" *ngIf="covids.currentPage > 1" (click)="selectPage(covids.currentPage - 1)">
+      <
+    </div>
+    <div *ngIf="covids.currentPage > PAGES_DEVIATION">
+      ...
+    </div>
+    <div class="pager-entry" [class.pager-entry-selected]="p === covids.currentPage"
+      *ngFor="let p of covids.currentPages" (click)="selectPage(p)">
+      {{ p }}
+    </div>
+    <div *ngIf="covids.currentPage <= covids.totalPage - PAGES_DEVIATION">
+      ...
+    </div>
+    <div class="pager-next" *ngIf="covids.currentPage < covids.totalPage" (click)="selectPage(covids.currentPage + 1)">
+      >
+    </div>
+  </div>
 </div>

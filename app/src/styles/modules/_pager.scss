@@ -1,0 +1,18 @@
+@import "../var";
+
+.pager {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pager-entry, .pager-previous, .pager-next {
+  cursor: pointer;
+  font-size: 24px;
+  padding: 5px 10px;
+}
+
+.pager-entry-selected {
+  font-weight: bold;
+  color: rgb(9, 151, 156);
+}
