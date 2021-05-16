@@ -1,0 +1,32 @@
+<body>
+    <h1>Bienvenue</h1>
+    <div id="presentation">Bonjour Monsieur</div>
+    <div id="hobbies"></div>
+    <button id="civilty">Changer la civilité</button>
+    <script>
+      var hobs = ['foot','TV','Jeux Vidéos','rando'];
+      let hobbies = '<ul><li>';
+      hobbies = hobbies + hobs.join('</li><li>');
+      hobbies += '</li></ul>';
+      document.querySelector('#hobbies').innerHTML = hobbies;
+
+      let civilite = 'Monsieur';
+      let civiliteColor = 'pink';
+
+      document.querySelector('#civilty').addEventListener('click', changeCivilite)
+
+      function changeCivilite() {
+        if (civilite === 'Monsieur') {
+          civilite = 'Madame';
+          civiliteColor = 'cyan';
+        } else {
+          civilite = 'Monsieur';
+          civiliteColor = 'pink';
+        }
+        const presentationNode = document.querySelector('#presentation');
+        presentationNode.innerText = 'Bonjour ' + civilite;
+        presentationNode.style = 'background-color: ' + civiliteColor;
+
+      }
+    </script>
+  </body>

@@ -1,0 +1,12 @@
+<h1>{{ titrePage }}</h1>
+<div>
+  <ul>
+    <li *ngFor="let f of formations$ | async">{{ f.nom | lowercase }} : {{ f.chargeH }} heures restantes</li>
+  </ul>
+</div>
+<div>{{ dateDuJour | date:'dd/MM/yyyy' }}</div>
+<div>
+  <input type="text" [(ngModel)]="nbFormation" name="nb-formation-field">
+  <button (click)="ajouterFormation()">Ajouter Formation</button>
+  <button (click)="retirerFormation()">Retirer Formation</button>
+</div>
