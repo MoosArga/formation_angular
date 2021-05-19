@@ -29,4 +29,8 @@ export class FormationComponent implements OnInit {
     this.nbFormation = +this.nbFormation - 1;
   }
 
+  catchInteractionProgressBar(formation: Formation): void {
+    console.log(`L'utilisateur cherche quelque chose sur la formation ${formation.nom} avec l'état d'avancement ${formation.note * 10}%`);
+  }
+
 }

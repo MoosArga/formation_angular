@@ -1,7 +1,15 @@
 <h1>{{ titrePage }}</h1>
 <div>
   <ul>
-    <li *ngFor="let f of formations$ | async">{{ f.nom | lowercase }} : {{ f.chargeH }} heures restantes</li>
+    <ng-container *ngFor="let f of formations$ | async">
+      <li *ngIf="f.chargeH > 0; else formationFinie" [class.formation-en-retard]="f.chargeH > 20">
+        {{ f.nom | lowercase }} : {{ f.chargeH }} heures restantes. Vous avez obtenu {{ f.note | notation }}
+        <app-progression-bar [formation]="f" (survolProgressBar)="catchInteractionProgressBar($event)"></app-progression-bar>
+      </li>
+      <ng-template #formationFinie>
+        <li>La formation {{ f.nom }} est finie</li>
+      </ng-template>
+    </ng-container>
   </ul>
 </div>
 <div>{{ dateDuJour | date:'dd/MM/yyyy' }}</div>
