@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Formation } from 'src/app/shared/model/formation';
 import { FormationDaoService } from 'src/app/shared/service/formation-dao.service';
@@ -10,15 +11,19 @@ import { FormationDaoService } from 'src/app/shared/service/formation-dao.servic
 })
 export class FormationComponent implements OnInit {
 
-  titrePage: string = 'Mes Formations';
+  titrePage: string;
   dateDuJour: Date = new Date();
   nbFormation: number = 0;
   formations$: Observable<Formation[]>;
 
-  constructor(private formationDaoService: FormationDaoService) { }
+  constructor(private formationDaoService: FormationDaoService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.formations$ = this.formationDaoService.findAll();
+    this.route.data.subscribe(data => {
+      this.titrePage = data.titrePage;
+    })
   }
 
   ajouterFormation(): void {

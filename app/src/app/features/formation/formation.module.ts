@@ -3,20 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FormationComponent } from './formation.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { FormationRoutingModule } from './formation-routing.module';
+import { FormationCardComponent } from './formation-card/formation-card.component';
 
 
 
 @NgModule({
   declarations: [
-    FormationComponent
+    FormationComponent,
+    FormationCardComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    FormationRoutingModule
   ],
-  exports: [
-    FormationComponent
-  ]
+  exports: []
 })
 export class FormationModule { }
