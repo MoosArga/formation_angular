@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Formation } from 'src/app/shared/model/formation';
 import { FormationDaoService } from 'src/app/shared/service/formation-dao.service';
@@ -10,10 +10,9 @@ import { FormationDaoService } from 'src/app/shared/service/formation-dao.servic
 })
 export class FormationCardComponent implements OnInit {
 
-  formation: Formation;
+  @Input() formation: Formation;
 
-  constructor(private formationDaoService: FormationDaoService,
-              private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

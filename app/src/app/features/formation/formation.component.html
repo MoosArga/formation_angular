@@ -5,6 +5,10 @@
       <li *ngIf="f.chargeH > 0; else formationFinie" [class.formation-en-retard]="f.chargeH > 20">
         {{ f.nom | lowercase }} : {{ f.chargeH }} heures restantes. Vous avez obtenu {{ f.note | notation }}
         <app-progression-bar [formation]="f" (survolProgressBar)="catchInteractionProgressBar($event)"></app-progression-bar>
+        <ul>
+          <li><a [routerLink]="[f.nom]">Path</a></li>
+          <li><a [routerLink]="[f.nom]" [queryParams]="{ 'prop': '' }">Path</a></li>
+        </ul>
       </li>
       <ng-template #formationFinie>
         <li>La formation {{ f.nom }} est finie</li>
@@ -18,3 +22,11 @@
   <button (click)="ajouterFormation()">Ajouter Formation</button>
   <button (click)="retirerFormation()">Retirer Formation</button>
 </div>
+<form #tcForm="ngForm">
+  <label>Titre de la formation</label>
+  <input type="text" name="titre-formation-field" [(ngModel)]="tFormation" minlength="2" pattern="[a-zA-Z]*" #tc="ngModel">
+  <button [disabled]="tcForm.invalid">Valider</button>
+  <pre *ngIf="tc.errors">
+    {{ tc.errors | json }}
+  </pre>
+</form>

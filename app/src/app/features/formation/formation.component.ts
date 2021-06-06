@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Formation } from 'src/app/shared/model/formation';
@@ -15,6 +16,7 @@ export class FormationComponent implements OnInit {
   dateDuJour: Date = new Date();
   nbFormation: number = 0;
   formations$: Observable<Formation[]>;
+  tFormation: string;
 
   constructor(private formationDaoService: FormationDaoService,
               private route: ActivatedRoute) { }
@@ -36,6 +38,10 @@ export class FormationComponent implements OnInit {
 
   catchInteractionProgressBar(formation: Formation): void {
     console.log(`L'utilisateur cherche quelque chose sur la formation ${formation.nom} avec l'état d'avancement ${formation.note * 10}%`);
+  }
+
+  watchForm(form: NgForm): void {
+    console.log(form);
   }
 
 }

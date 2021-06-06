@@ -1,3 +1,19 @@
 .formation-en-retard {
   color: red;
 }
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+input {
+  &.ng-valid.ng-dirty {
+    border-left: 5px solid green;
+  }
+  &.ng-invalid.ng-dirty {
+    border-left: 5px solid red;
+  }
+  &:focus {
+    border-left: 5px solid blue;
+  }
+}
