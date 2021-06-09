@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Formation } from 'src/app/shared/model/formation';
 import { FormationDaoService } from 'src/app/shared/service/formation-dao.service';
 
@@ -10,18 +12,15 @@ import { FormationDaoService } from 'src/app/shared/service/formation-dao.servic
 })
 export class FormationPathDetailComponent implements OnInit {
 
-  formation: Formation;
+  formation$: Observable<Formation>;
 
   constructor(private route: ActivatedRoute,
               private formationDaoService: FormationDaoService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const nomFormation = params['nomFormation'];
-      this.formationDaoService.findByName(nomFormation).subscribe(formation => {
-        this.formation = formation;
-      });
-    });
+    this.formation$ = this.route.params.pipe(
+      switchMap(params => this.formationDaoService.findByName(params['nomFormation']))
+    );
   }
 
 }

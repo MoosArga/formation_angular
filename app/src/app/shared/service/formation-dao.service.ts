@@ -5,11 +5,10 @@ import { Formation } from '../model/formation';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FormationDaoService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   findAll(): Observable<Formation[]> {
     return this.http.get<Formation[]>('/api/formations');
@@ -18,8 +17,17 @@ export class FormationDaoService {
   findByName(nom: string): Observable<Formation> {
     let httpParams: HttpParams = new HttpParams();
     httpParams = httpParams.append('nom', nom);
-    return this.http.get<Formation[]>('/api/formations', { params: httpParams }).pipe(
-      map(formations => !!formations && !!formations.length ? formations[0] : undefined)
-    );
+    return this.http
+      .get<Formation[]>('/api/formations', { params: httpParams })
+      .pipe(
+        map((formations) =>
+          !!formations && !!formations.length ? formations[0] : undefined
+        )
+      );
+  }
+
+  findFormationsByNomLike(nom: string): Observable<Formation[]> {
+    const params: HttpParams = new HttpParams().append('nom_like', nom);
+    return this.http.get<Formation[]>('/api/formations', { params });
   }
 }
